@@ -9,14 +9,14 @@ public class Videos {
 
         private int channelId;
         private String channelName;
-       /* private int video_pic;
-        private String video_link;*/
+        private String video_pic;
+        /* private String video_link;*/
 
-        public Videos(int channelId, String channelName /*int video_pic, String video_link*/) {
+        public Videos(int channelId, String channelName, String video_pic/*String video_link*/) {
             this.channelId = channelId;
             this.channelName = channelName;
-            /*this.video_pic = video_pic;
-            this.video_link = video_link;*/
+            this.video_pic = video_pic;
+            /*this.video_link = video_link;*/
         }
 
         public int getId() {
@@ -27,10 +27,10 @@ public class Videos {
             return channelName;
         }
 
-       /* public int getPic() {
+        public String getPicture() {
             return video_pic;
         }
-
+/*
         public String getLink() {
             return video_link;
         }

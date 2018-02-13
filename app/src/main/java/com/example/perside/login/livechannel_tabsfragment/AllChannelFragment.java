@@ -1,5 +1,8 @@
 package com.example.perside.login.livechannel_tabsfragment;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,13 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.perside.login.LiveChannel;
 import com.example.perside.login.R;
+import com.example.perside.login.VideoStream;
 import com.example.perside.login.Vod;
 import com.example.perside.login.api.Api;
 import com.example.perside.login.api.RequestHandler;
@@ -40,11 +47,9 @@ public class AllChannelFragment extends Fragment {
     private static final int CODE_POST_REQUEST = 1025;
 
     ProgressBar progressBar;
-    ListView listView;
+    GridView gridView;
 
     List<Videos> VideoList;
-
-    //TODO study the MyHero app main activity well and implement the database call here :)
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +57,7 @@ public class AllChannelFragment extends Fragment {
         View view = inflater.inflate(R.layout.allchannels_view, container, false);
 
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-        listView = (ListView) view.findViewById(R.id.listViewVideos);
+        gridView = (GridView) view.findViewById(R.id.listViewVideos);
 
         VideoList = new ArrayList<>();
 
@@ -72,11 +77,12 @@ public class AllChannelFragment extends Fragment {
 
             VideoList.add(new Videos(
                     obj.getInt("channelId"),
-                    obj.getString("channelName")
+                    obj.getString("channelName"),
+                    obj.getString("icon")
                     ));
         }
         VideoAdapter adapter = new VideoAdapter(VideoList);
-        listView.setAdapter(adapter);
+        gridView.setAdapter(adapter);
     }
     private class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
         String url;
@@ -127,10 +133,20 @@ public class AllChannelFragment extends Fragment {
 
     class VideoAdapter extends ArrayAdapter<Videos> {
         List<Videos> videosList;
+        String imageURL;
 
         public VideoAdapter(List<Videos> videosList) {
             super(getActivity(), R.layout.layout_video_list, videosList);
             this.videosList = videosList;
+        }
+
+        public void setImageUrl(String imageURL, ImageView imageView) {
+            this.imageURL = imageURL;
+            Glide.with(getContext())
+                    .load(imageURL)
+                    .override(150, 150)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imageView);
         }
 
         @Override
@@ -138,11 +154,25 @@ public class AllChannelFragment extends Fragment {
             LayoutInflater inflater = getActivity().getLayoutInflater();
             View listViewItem = inflater.inflate(R.layout.layout_video_list, null, true);
 
+            ImageView imageView = (ImageView)listViewItem.findViewById(R.id.imageview_cover_art);
+
             TextView textViewName = (TextView) listViewItem.findViewById(R.id.textVideoName);
 
+            //set onclick listerner to images and display video as the result of click
+            imageView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    //get imageId
+                    int imageId = v.getId();
+                    Intent intent = new Intent(getActivity(), VideoStream.class);
+                    intent.putExtra("image id", imageId);
+                    startActivity(intent);
+                }
+            });
             final Videos video = VideoList.get(position);
-
+            setImageUrl(video.getPicture(), imageView);
             textViewName.setText(video.getName());
+
 
             return listViewItem;
         }

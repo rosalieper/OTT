@@ -8,8 +8,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.TextView;
 
-import com.example.perside.login.LiveChanneltapsAdapter;
 import com.example.perside.login.R;
+import com.example.perside.login.vod.vod_tabsAdapter.FrenchMoviestabsAdapter;
 
 /**
  * Created by perside on 11/16/17.
@@ -34,7 +34,6 @@ public class FrenchMovies extends ActionBarActivity implements android.support.v
 
         tabsviewPager = (ViewPager) findViewById(R.id.tabspager);
 
-        //TODO change to new FrenchMoviestabsAdapter();
         mTabsAdapter = new FrenchMoviestabsAdapter(getSupportFragmentManager());
 
         tabsviewPager.setAdapter(mTabsAdapter);

@@ -1,4 +1,4 @@
-package com.example.perside.login.vod;
+package com.example.perside.login.vod.vod_tabsAdapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
