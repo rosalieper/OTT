@@ -3,19 +3,19 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_channel"
             android:icon="@drawable/ic_live_tv_black_24dp"
             android:title="Live Channel" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_video"
             android:icon="@drawable/ic_local_movies_black_24dp"
             android:title="Video on Demand" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_favourite"
             android:icon="@drawable/ic_favorite_black_24dp"
             android:title="Favourite" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_history"
             android:icon="@drawable/ic_av_timer_black_24dp"
             android:title="Watch history" />
     </group>
@@ -23,11 +23,11 @@
     <item android:title="Transaction">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_package"
                 android:icon="@drawable/ic_local_grocery_store_black_24dp"
                 android:title="Buy package" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_purchase"
                 android:icon="@drawable/ic_event_note_black_24dp"
                 android:title="My purchases" />
         </menu>

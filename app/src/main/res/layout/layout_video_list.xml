@@ -20,7 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_weight="8"
-        android:text="Captain America"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
 </LinearLayout>

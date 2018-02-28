@@ -62,6 +62,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Vod" />
         </activity>
+        <activity android:name=".VideoStream"
+            android:parentActivityName=".LiveChannel" >
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LiveChannel" />
+        </activity>
     </application>
 
 </manifest>
